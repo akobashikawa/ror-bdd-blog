@@ -2,13 +2,35 @@
 
 <h1>Posts</h1>
 
-<div id="posts">
+# <div id="posts">
+#   <% @posts.each do |post| %>
+#     <%= render post %>
+#     <p>
+#       <%= link_to "Show this post", post %>
+#     </p>
+#   <% end %>
+# </div>
+
+<table id="posts-list">
+  <tr>
+    <th>Title</th>
+    <th>Content</th>
+    <th>Post time</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
   <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
+  <tr>
+    <td><%= post.title %></td>
+    <td><%= post.content %></td>
+    <td><%= post.post_time %></td>
+    <td><%= link_to 'Show', post %></td>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
   <% end %>
-</div>
+</table>
 
 <%= link_to "New post", new_post_path %>
