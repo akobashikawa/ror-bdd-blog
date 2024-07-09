@@ -9,16 +9,20 @@
   <%= button_to "Destroy this post", @post, method: :delete %>
 </div>
 
-<h2>&darr;Comments&darr;</h2>
+<h2>Comments</h2>
 <div id="comments-list">
   <% @post.comments.each_with_index do |c,idx| %>
-  <p><span>#<%= idx + 1 %>: <%= c.name %></span>:
-  <%= c.content %></p>
+  <p>
+    <span>#<%= idx + 1 %>: <%= c.name %></span>:
+    <%= c.content %>
+    <%= link_to "Delete Comment", post_comment_path(@post, c), :method => :delete, :confirm => "Are you sure you want to delete this comment?" %>
+  </p>
   <% end %>
 
   <hr />
 
   <%= form_for([@post, @post.comments.build]) do |f| %>
+  <%= f.hidden_field :post_id, value: @post.id %>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>

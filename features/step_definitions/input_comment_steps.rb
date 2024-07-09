@@ -10,7 +10,7 @@ When('I add a comment with the following information') do |table|
         @content = comment_data[:content]
         @post.comments.create!({ :name => @commenter, :email => @email, :content => @content })
     end
-    puts "Comments: #{@post.comments.inspect}"
+    # puts "Comments: #{@post.comments.inspect}"
 end
   
 Then('I can see the comment has been added onto the post') do
