@@ -8,3 +8,31 @@
 
   <%= button_to "Destroy this post", @post, method: :delete %>
 </div>
+
+<h2>&darr;Comments&darr;</h2>
+<div id="comments-list">
+  <% @post.comments.each_with_index do |c,idx| %>
+  <p><span>#<%= idx + 1 %>: <%= c.name %></span>:
+  <%= c.content %></p>
+  <% end %>
+
+  <hr />
+
+  <%= form_for([@post, @post.comments.build]) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %>
+</div>
